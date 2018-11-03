@@ -82,14 +82,5 @@ int Hostel::check_room(int roomid)
 //Check for the number of available/unoccupied rooms
 void Hostel::available_rooms()
 {
-    int i;
-    vector<int>::iterator it_=studentroom.end();
-    if(*it_<60)
-     {
-         cout<<"\nRoom's Unoccupied:\n";
-         for(i=*it_;i<=60;++i)//ctr is the iterator for the count for the number of rooms incremented in add_student()
-           cout<<"\nRoom no."<<i<<"\n";
-     }
-     else
-        cout<<"\nNo vacancy!!";
+    //Addition of code after add_student() function
 }
