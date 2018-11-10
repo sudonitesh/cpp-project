@@ -1,5 +1,8 @@
 #ifndef CLASSES_H
 #define CLASSES_H
+#include <vector>
+#include<string>
+
 
 // class Demo
 // {
@@ -12,11 +15,11 @@
 class Hostel
 {
     public:
-        vector<int>rnumber;
-        vector<int>rfloor;
-        vector<int> studentid;
-        vector<string>studentname;
-        vector<int>studentroom;
+        std::vector<int>rnumber;
+        std::vector<int>rfloor;
+        std::vector<int> studentid;
+        std::vector<std::string>studentname;
+        std::vector<int>studentroom;
 
         void program_open();
 
