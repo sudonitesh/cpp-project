@@ -9,9 +9,15 @@
 //*: get all data in separate arrays when pogram starts
 //*: keep index same of all, rnumber[0] = 33, rfloor[0] = 3, studentid[0] = "B117000", studentname[0] = "f l"
 #include<iostream>
+#include<fstream>
+#include<vector>
+#include<string>
+#include<algorithm>
+#include<iterator>
+#include<boost/algorithm/string.hpp>
 using namespace std;
 
-//*: add other functions or ectors if needed
+//*: add other functions or vectors if needed
 // *: Can't use ARRAY, USE VECTOR
 // *: two collection in mysql-> student, hostel(room numbers according to floor)
 //*: for first version consider there is only one block in the hostel
@@ -23,7 +29,7 @@ class Hostel
 {
     vector<int>rnumber;
     vector<int>rfloor;
-    vector<string> studentid;
+    vector<int> studentid;
     vector<string>studentname;
     vector<int>studentroom;
 
