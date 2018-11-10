@@ -98,7 +98,8 @@ void Hostel::stud_all_display()
 //Add a student
 void Hostel::add_student()
 {
-    string id;
+    int i = 0;
+    int id;
     cout<<"Enter student id: ";
     cin>> id;
     string name;
@@ -110,14 +111,8 @@ void Hostel::add_student()
     }
     else
     {
-        int i = 0;
-        while(rnumber[i] != NULL)
-        {
-            i++;
-        }
-        studentname[i] = name;
-        studentid[i] = id;
-        rnumber[i] = i;
+        studentname.push_back(name);
+        studentid.push_back(id);
         if(rnumber[i] <= 20) //20 rooms in one floor
             rfloor[i] = 1;
         else if(rnumber[i] > 20 && rnumber[i] <= 40)
@@ -125,17 +120,20 @@ void Hostel::add_student()
         else
             rfloor[i] = 3;
     }
-    display_details(i);
-}
-
-//Display the details of a given index
-void Hostel::display_details(int i)
-{
     cout<< "ID: "<< studentid[i]<< endl;
     cout<< "Name: "<< studentname[i]<< endl;
     cout<<"Room No.: "<< rnumber[i]<< endl;
     cout<<"Floor No.: "<< rfloor[i]<< endl;
 }
+
+// //Display the details of a given index
+// void Hostel::display_details(int i)
+// {
+//     cout<< "ID: "<< studentid[i]<< endl;
+//     cout<< "Name: "<< studentname[i]<< endl;
+//     cout<<"Room No.: "<< rnumber[i]<< endl;
+//     cout<<"Floor No.: "<< rfloor[i]<< endl;
+// }
 
 //Remove a student
 void Hostel::stud_del()
@@ -148,8 +146,8 @@ void Hostel::stud_del()
     {
         i++;
     }
-    rnumber[i] = NULL;
-    studentname[i] = NULL;
-    studentid[i] = NULL;
-    rfloor[i] = NULL;
+    rnumber[i] = 0;
+    studentname[i] = '0';
+    studentid[i] = 0;
+    rfloor[i] = 0;
 }

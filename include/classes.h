@@ -15,12 +15,11 @@
 class Hostel
 {
     public:
-        std::vector<int>rnumber;
+        std::vector<int>rnumber;//size not specified
         std::vector<int>rfloor;
         std::vector<int> studentid;
         std::vector<std::string>studentname;
         std::vector<int>studentroom;
-
         void program_open();
 
         void header();
