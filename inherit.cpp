@@ -30,7 +30,7 @@ class Hostel
         
 
         void get_stud_info();
-        void stud_all_display();//*
+        void stud_all_display();//*(done)
         void stud_search();
         
 
@@ -67,9 +67,9 @@ class Admin: public Hostel
 {
     public:
         void header(); // functions admin can acess
-        void add_student(); //*
-        void stud_del(); //*
-        void stud_clear(); //remove all students
+        void add_student(); //*(done)
+        void stud_del(); //*(done)
+        void stud_clear(); //remove all students(done)
 
 
 
@@ -109,72 +109,68 @@ void Hostel:: store_value()	//stores all IDs, names and room nos in separate vec
 void Admin::add_student()
 {
     string id;
-    //* cout<<"Enter student id: ";
-    // cin>> id;
-    id = "33";
+    cout<<"Enter student id: ";
+    cin>> id;
     string name;
-    //* cout<<"Enter student name: ";
-    // cin>> name;
-    name="sacfd";
+    cout<<"Enter student name: ";
+    cin>> name;
     string room;
-    //* cout<<"room num";
-    // cin>>room;
-    room = "343";
-
-    // check_room(room);-----------------------------------
-
+    cout<<"Enter room number: ";
+    cin>>room;
     // if(rnumber.size() > 60)
     // {
     //     cout<< "No vacancy."<< endl;
     // }
     // else
     // {
-        // int i = 0;
-        // while(studentname[i] != NULL)
-        // {
-        //     i++;
-        // }
-        studentname.push_back(name);
-        studentid.push_back(id);
-        rnumber.push_back(room);
-
-        // if(rnumber[i] <= 20) //20 rooms in one floor
-        //     rfloor[i] = 1;
-        // else if(rnumber[i] > 20 && rnumber[i] <= 40)
-        //     rfloor[i] = 2;
-        // else
-        //     rfloor[i] = 3;
-        // cout<< "ID: "<< studentid.end()<< endl;
-        // cout<< "Name: "<< studentname.end()<< endl;
-        // cout<<"Room No.: "<< rnumber.end()<< endl;
-        // cout<<"Floor No.: "<< rfloor[i]<< endl;
-         for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-            cout << ' ' << *it;
-        cout<<endl;
-         for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-            cout << ' ' << *it;
-        //  for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
-        //     cout << ' ' << *it;
+    // int i = 0;
+    // while(studentname[i] != NULL)
+    // {
+    //     i++;
+    // }
+    studentname.push_back(name);
+    studentid.push_back(id);
+    rnumber.push_back(room);
+    
+    // if(rnumber[i] <= 20) //20 rooms in one floor
+    //     rfloor[i] = 1;
+    // else if(rnumber[i] > 20 && rnumber[i] <= 40)
+    //     rfloor[i] = 2;
+    // else
+    //     rfloor[i] = 3;
+    // cout<< "ID: "<< studentid.end()<< endl;
+    // cout<< "Name: "<< studentname.end()<< endl;
+    // cout<<"Room No.: "<< rnumber.end()<< endl;
+    // cout<<"Floor No.: "<< rfloor[i]<< endl;
+    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    {
+        cout<< *it<< "\t";
+        cout<< studentname[it-studentid.begin()]<< "\t";
+        cout<< rnumber[it-studentid.begin()]<< endl;
+    }
+    // cout<<endl;
+    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+    //     cout<< *it<< "\t";
     // }
     // display_details(i);
 }
 
 void Admin::stud_del()
 {
-    cout<<"id";
+    cout<<endl<<"Enter ID of leaving student:";
     string id;
     cin>>id;
-    int i=0;
+    int i = 0;
     cout<<endl;
-    for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    cout << ' ' << *it;
-    cout<<endl;
-//////////////////////////////////////////////////////
+    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
+    // cout << ' ' << *it;
+    // cout<<endl;
+    
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         if(*it == id)
         {
-            cout<<"remove"<<*it<<endl;
+            cout<<"Removing "<<*it<<endl;
             // break;
             studentid.erase (studentid.begin() + i);
             break;
@@ -184,28 +180,53 @@ void Admin::stud_del()
     cout<<endl;
     studentname.erase (studentname.begin() + i);
     rnumber.erase (rnumber.begin() + i);
-    //////////////////////////////////////////////////////////////////////////////
+    
     // cout<<endl;
-
+    
     // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    //     cout << ' ' << *it;
+    //     cout<< *it<<"\t";
     // cout<<endl;
-    //  for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-    //     cout << ' ' << *it;
+    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    //     cout<< *it<<"\t";
     // cout<<endl;
+    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+    //     cout<< *it<<"\t";
+    // cout<<endl;
+    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    {
+        cout<< *it<< "\t";
+        cout<< studentname[it-studentid.begin()]<< "\t";
+        cout<< rnumber[it-studentid.begin()]<< endl;
+    }
 }
 
 void Hostel::stud_all_display()
 {
-    cout<<endl;
-    for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-        cout << ' ' << *it;
-    cout<<endl;
+    // cout<<endl;
+    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
+    //     cout << *it<< "\t";
+    // cout<<endl;
+    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    //     cout<< *it<< "\t";
+    // cout<<endl;
+    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+    //     cout<< *it<< "\t";
+    // //*: either show row-column wise or simply show the database
+    // cout<<endl;
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-        cout << ' ' << *it;
-    //*: either show row-column wise or simply show the database
-    cout<<endl;
+    {
+        cout<< *it<< "\t";
+        cout<< studentname[it-studentid.begin()]<< "\t";
+        cout<< rnumber[it-studentid.begin()]<< endl;
+    }
+    
+}
 
+void Admin::stud_clear()
+{
+    rnumber.clear();
+    studentid.clear();
+    studentname.clear();
 }
 
 
