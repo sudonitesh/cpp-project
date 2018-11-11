@@ -33,7 +33,7 @@ class Hostel
         void get_stud_info();
         void stud_all_display();//*
         void stud_search();
-        void stud_clear(); //remove all students
+        void stud_clear(); //* remove all students
 
         void get_roominfo();
         // void room_add();
@@ -92,17 +92,14 @@ void Hostel:: store_value()	//stores all IDs, names and room nos in separate vec
 void Hostel::add_student()
 {
     string id;
-    //* cout<<"Enter student id: ";
-    // cin>> id;
-    id = "33";
+    cout<<"Enter student id: ";
+    cin>> id;
     string name;
-    //* cout<<"Enter student name: ";
-    // cin>> name;
-    name="sacfd";
+    cout<<"Enter student name: ";
+    cin>> name;
     string room;
-    //* cout<<"room num";
-    // cin>>room;
-    room = "343";
+    cout<<"Enter room number: ";
+    cin>>room;
     // if(rnumber.size() > 60)
     // {
     //     cout<< "No vacancy."<< endl;
@@ -128,33 +125,35 @@ void Hostel::add_student()
         // cout<< "Name: "<< studentname.end()<< endl;
         // cout<<"Room No.: "<< rnumber.end()<< endl;
         // cout<<"Floor No.: "<< rfloor[i]<< endl;
-         for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-            cout << ' ' << *it;
-        cout<<endl;
-         for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-            cout << ' ' << *it;
-        //  for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
-        //     cout << ' ' << *it;
+        for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+        {    
+            cout<< *it<< "\t";
+            cout<< studentname[it-studentid.begin()]<< "\t";
+            cout<< rnumber[it-studentid.begin()]<< endl;
+        }
+        // cout<<endl;
+        // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+        //     cout<< *it<< "\t";
     // }
     // display_details(i);
 }
 
 void Hostel::stud_del()
 {
-    cout<<"id";
+    cout<<endl<<"Enter ID of leaving student:";
     string id;
     cin>>id;
-    int i=0;
+    int i = 0;
     cout<<endl;
-    for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    cout << ' ' << *it;
-    cout<<endl;
+    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
+    // cout << ' ' << *it;
+    // cout<<endl;
 
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         if(*it == id)
         {
-            cout<<"remove"<<*it<<endl;
+            cout<<"Removing "<<*it<<endl;
             // break;
             studentid.erase (studentid.begin() + i);
             break;
@@ -168,35 +167,76 @@ void Hostel::stud_del()
     // cout<<endl;
 
     // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    //     cout << ' ' << *it;
+    //     cout<< *it<<"\t";
     // cout<<endl;
-    //  for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-    //     cout << ' ' << *it;
+    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    //     cout<< *it<<"\t";
     // cout<<endl;
+    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+    //     cout<< *it<<"\t";
+    // cout<<endl;
+    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+        {    
+            cout<< *it<< "\t";
+            cout<< studentname[it-studentid.begin()]<< "\t";
+            cout<< rnumber[it-studentid.begin()]<< endl;
+        }
 }
 
 void Hostel::stud_all_display()
 {
-    cout<<endl;
-    for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-        cout << ' ' << *it;
-    cout<<endl;
+    // cout<<endl;
+    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
+    //     cout << *it<< "\t";
+    // cout<<endl;
+    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    //     cout<< *it<< "\t";
+    // cout<<endl;
+    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+    //     cout<< *it<< "\t";
+    // //*: either show row-column wise or simply show the database
+    // cout<<endl;
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-        cout << ' ' << *it;
-    //*: either show row-column wise or simply show the database
-    cout<<endl;
+        {    
+            cout<< *it<< "\t";
+            cout<< studentname[it-studentid.begin()]<< "\t";
+            cout<< rnumber[it-studentid.begin()]<< endl;
+        }
 
 }
 
-
+void Hostel::stud_clear()
+{
+    rnumber.clear();
+    studentid.clear();
+    studentname.clear();
+}
 
 int main()
 {
     Hostel H;
     H.store_value();
-    H.add_student();
-    H.stud_del();
-    H.stud_all_display();
-
+    // H.add_student();
+    // H.stud_del();
+    // H.stud_all_display();
+    int choice;
+    cout<<endl<< "Press the appropriate key: "<<endl;
+    while(1)
+    {
+        cout<<"\n1. Add a new student.\n2. Remove a student.\n3. Clear all entries.\n4. Display all entries\n0. Exit\n";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1: H.add_student();
+                    break;
+            case 2: H.stud_del();
+                    break;
+            case 3: H.stud_clear();
+                    break;
+            case 4: H.stud_all_display();
+                    break;
+            case 0: return 0;
+        }
+    }
     return 0;
 }
