@@ -12,11 +12,12 @@ using namespace std;
 
 int main()
 {
-    Demo D(33);
-    cout<<D.showData()<<endl;
+    // Demo D(33);
+    // cout<<D.showData()<<endl;
     
-    int shit = fooFun();
-    cout<<shit;
+    // int shit = fooFun();
+    // cout<<shit;
+    Hostel H;
 
     return 0;
 }

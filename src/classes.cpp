@@ -91,7 +91,7 @@ void Hostel::stud_all_display()
     cout<< "Student ID\tStudent Name\tRoom No."<< endl;
     for(unsigned int i = 0; i <= studentname.size(); i++)
     {
-        cout<< studentid[i]<<"\t"<< studentname[i]<<"\t"<<rnumber[i]<< enndl;;
+        cout<< studentid[i]<<"\t"<< studentname[i]<<"\t"<<rnumber[i]<< endl;;
     }
 }
 
