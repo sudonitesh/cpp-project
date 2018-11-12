@@ -18,6 +18,9 @@ int main()
     // int shit = fooFun();
     // cout<<shit;
     Hostel H;
+    // H.program_open();
+    // H.stud_all_display();
+    H.store_value();
 
     return 0;
 }

@@ -33,32 +33,32 @@ vector<vector<string>> program_open()	//I don't think you need this now
 	return dataList;
 }
 
-vector<vector<string>> store_value()	//stores all IDs, names and room nos in separate vectors
-{
-	string file_name = "../database/db.csv", delimeter = ",";
+// vector<vector<string>> store_value()	//stores all IDs, names and room nos in separate vectors
+// {
+// 	string file_name = "../database/db.csv", delimeter = ",";
 
-	ifstream file(file_name);
+// 	ifstream file(file_name);
 	
-	vector<string> nm_v, rm_v, id_v;
+// 	vector<string> nm_v, rm_v, id_v;
 
-	string line = "";
+// 	string line = "";
 
-	getline(file, line);
+// 	getline(file, line);
 
-	while(getline(file, line))
-	{
-			vector<string> vect;
-			boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
+// 	while(getline(file, line))
+// 	{
+// 			vector<string> vect;
+// 			boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
 			
-			id_v.push_back(vect[0]);
-			nm_v.push_back(vect[1]);
-			rm_v.push_back(vect[2]);
-	}
+// 			id_v.push_back(vect[0]);
+// 			nm_v.push_back(vect[1]);
+// 			rm_v.push_back(vect[2]);
+// 	}
 
-	file.close();
+// 	file.close();
 
-	for (int i = 0 ; i < 60 ; i++)	//display all the vectors (delete if you don't want)
-  	{
-	   cout <<  id_v[i] << " " << nm_v[i] << " " << rm_v[i] << endl;
-  	}
-}
+// 	for (int i = 0 ; i < 60 ; i++)	//display all the vectors (delete if you don't want)
+//   	{
+// 	   cout <<  id_v[i] << " " << nm_v[i] << " " << rm_v[i] << endl;
+//   	}
+// }

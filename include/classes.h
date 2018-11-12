@@ -15,9 +15,9 @@
 class Hostel
 {
     public:
-        std::vector<int>rnumber;
+        std::vector<std::string>rnumber;
         std::vector<int>rfloor;
-        std::vector<int> studentid;
+        std::vector<std::string> studentid;
         std::vector<std::string>studentname;
         std::vector<int>studentroom;
 
@@ -28,7 +28,7 @@ class Hostel
         // int idposition(int sid); // for update, delete , search
 
         void add_student();
-        
+        void store_value();
 
         void stud_del();
 

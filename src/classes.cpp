@@ -13,89 +13,89 @@ using namespace std;
 /***rest of the functions */////
 
 //Search a student name and room number by his id
-void Hostel::stud_search()
-{
-    int ser;
-    cout<<"\nEnter the Student Id:\n";
-    cin>>ser;
-    vector<int>::iterator it;
-    it=find(studentid.begin(),studentid.end(),ser);
-    if(it!=studentid.end())
-    {
-        cout<<"\nSTUDENT FOUND:\n";
-        cout<<"\nNAME:"<<studentname[it-studentid.begin()];
-        cout<<"\nROOM NO.:"<<studentroom[it-studentroom.begin()];
-    }
-    else
-        cout<<"Element not found!"<<"\n\n\n";
-}
+// void Hostel::stud_search()
+// {
+//     int ser;
+//     cout<<"\nEnter the Student Id:\n";
+//     cin>>ser;
+//     vector<int>::iterator it;
+//     it=find(studentid.begin(),studentid.end(),ser);
+//     if(it!=studentid.end())
+//     {
+//         cout<<"\nSTUDENT FOUND:\n";
+//         cout<<"\nNAME:"<<studentname[it-studentid.begin()];
+//         cout<<"\nROOM NO.:"<<studentroom[it-studentroom.begin()];
+//     }
+//     else
+//         cout<<"Element not found!"<<"\n\n\n";
+// }
 
-//Clear all the student details
-void Hostel::stud_clear()
-{
-    rnumber.clear();
-    studentid.clear();
-    studentname.clear();
-    studentroom.clear();
-}
+// //Clear all the student details
+// void Hostel::stud_clear()
+// {
+//     rnumber.clear();
+//     studentid.clear();
+//     studentname.clear();
+//     studentroom.clear();
+// }
 
-//Search for the student name and id by the room number
-void Hostel::room_search()
-{
-    int roomno;
-    cout<<"\nEnter the room no. to be searched:";
-    cin>>roomno;
-    vector<int>::iterator it;
-    it=find(studentroom.begin(),studentroom.end(),roomno);
-    if(it!=studentroom.end())
-    {
-        if(studentid[it-studentroom.begin()]=='\0')
-          cout<<"\nRoom is vacant!!";
-        else
-          {
-             cout<<"\nStudent Details for Room no."<<*it<<":";
-             cout<<"\nName:"<<studentname[it-studentroom.begin()];
-             cout<<"\nID:"<<studentid[it-studentroom.begin()];
-          }
-    }
-    else
-        cout<<"Room not found!"<<"\n\n\n";
-}
+// //Search for the student name and id by the room number
+// void Hostel::room_search()
+// {
+//     int roomno;
+//     cout<<"\nEnter the room no. to be searched:";
+//     cin>>roomno;
+//     vector<int>::iterator it;
+//     it=find(studentroom.begin(),studentroom.end(),roomno);
+//     if(it!=studentroom.end())
+//     {
+//         if(studentid[it-studentroom.begin()]=='\0')
+//           cout<<"\nRoom is vacant!!";
+//         else
+//           {
+//              cout<<"\nStudent Details for Room no."<<*it<<":";
+//              cout<<"\nName:"<<studentname[it-studentroom.begin()];
+//              cout<<"\nID:"<<studentid[it-studentroom.begin()];
+//           }
+//     }
+//     else
+//         cout<<"Room not found!"<<"\n\n\n";
+// }
 
-//Check whether the searched room is vacant
-int Hostel::check_room(int roomid)
-{
-    vector<int>::iterator it;
-    it=find(studentroom.begin(),studentroom.end(),roomid);
-    if(it!=studentroom.end())
-    {
-        if(studentid[it-studentroom.begin()]=='\0')
-          return 0; //Room is vacant
-        else
-          return 1; //Room is occupied already
-    }
-    else
-        return -1;//Invalid room number entered
-}
+// //Check whether the searched room is vacant
+// int Hostel::check_room(int roomid)
+// {
+//     vector<int>::iterator it;
+//     it=find(studentroom.begin(),studentroom.end(),roomid);
+//     if(it!=studentroom.end())
+//     {
+//         if(studentid[it-studentroom.begin()]=='\0')
+//           return 0; //Room is vacant
+//         else
+//           return 1; //Room is occupied already
+//     }
+//     else
+//         return -1;//Invalid room number entered
+// }
 
 
-//Check for the number of available/unoccupied rooms
-void Hostel::available_rooms()
-{
-    //Addition of code after add_student() function
-}
+// //Check for the number of available/unoccupied rooms
+// void Hostel::available_rooms()
+// {
+//     //Addition of code after add_student() function
+// }
 
-//display all student details
-void Hostel::stud_all_display()
-{
-    cout<< "Student ID\tStudent Name\tRoom No."<< endl;
-    for(unsigned int i = 0; i <= studentname.size(); i++)
-    {
-        cout<< studentid[i]<<"\t"<< studentname[i]<<"\t"<<rnumber[i]<< endl;;
-    }
-}
+// //display all student details
+// void Hostel::stud_all_display()
+// {
+//     cout<< "Student ID\tStudent Name\tRoom No."<< endl;
+//     for(unsigned int i = 0; i <= studentname.size(); i++)
+//     {
+//         cout<< studentid[i]<<"\t"<< studentname[i]<<"\t"<<rnumber[i]<< endl;;
+//     }
+// }
 
-//Add a student
+// Add a student
 void Hostel::add_student()
 {
     string id;
@@ -128,28 +128,58 @@ void Hostel::add_student()
     display_details(i);
 }
 
-//Display the details of a given index
-void Hostel::display_details(int i)
-{
-    cout<< "ID: "<< studentid[i]<< endl;
-    cout<< "Name: "<< studentname[i]<< endl;
-    cout<<"Room No.: "<< rnumber[i]<< endl;
-    cout<<"Floor No.: "<< rfloor[i]<< endl;
-}
+// //Display the details of a given index
+// void Hostel::display_details(int i)
+// {
+//     cout<< "ID: "<< studentid[i]<< endl;
+//     cout<< "Name: "<< studentname[i]<< endl;
+//     cout<<"Room No.: "<< rnumber[i]<< endl;
+//     cout<<"Floor No.: "<< rfloor[i]<< endl;
+// }
 
-//Remove a student
-void Hostel::stud_del()
+// //Remove a student
+// void Hostel::stud_del()
+// {
+//     int room_no;
+//     cout<< "Enter room number: ";
+//     cin>> room_no;
+//     int i = 0;
+//     while(rnumber[i] != room_no)
+//     {
+//         i++;
+//     }
+//     rnumber[i] = NULL;
+//     studentname[i] = NULL;
+//     studentid[i] = NULL;
+//     rfloor[i] = NULL;
+// }
+
+void Hostel:: store_value()	//stores all IDs, names and room nos in separate vectors
 {
-    int room_no;
-    cout<< "Enter room number: ";
-    cin>> room_no;
-    int i = 0;
-    while(rnumber[i] != room_no)
-    {
-        i++;
-    }
-    rnumber[i] = NULL;
-    studentname[i] = NULL;
-    studentid[i] = NULL;
-    rfloor[i] = NULL;
+	string file_name = "../database/db.csv", delimeter = ",";
+
+	ifstream file(file_name);
+	
+	// vector<string> nm_v, rm_v, id_v;
+
+	string line = "";
+
+	getline(file, line);
+
+	while(getline(file, line))
+	{
+			vector<string> vect;
+			boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
+			
+			studentid.push_back(vect[0]);
+			studentname.push_back(vect[1]);
+			rnumber.push_back(vect[2]);
+	}
+
+	file.close();
+
+	for (int i = 0 ; i < 60 ; i++)	//display all the vectors (delete if you don't want)
+  	{
+	   cout <<  studentid[i] << " " << studentname[i] << " " << rnumber[i] << endl;
+  	}
 }
