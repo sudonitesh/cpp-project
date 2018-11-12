@@ -165,7 +165,7 @@ void Admin::add_student()
     
 }
 
-vvoid Hostel::stud_del() 
+void Hostel::stud_del() 
 {
     /*cout<<endl<<"Enter ID of leaving student:";
     string id;
