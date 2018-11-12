@@ -12,7 +12,7 @@ using namespace std;
 
 void Hostel:: header() 
 {
-    cout<<"4. Search by student name\n 5. Search by ID\n6. Search by room\n7. Check room availability\n8. Display all entries\n";
+    cout<<"4. Search by student name\n 5. Search by ID\n6. Check room availability\n7. Search by room\n8. Display all entries\n";
 }
 
 void Student:: guest()

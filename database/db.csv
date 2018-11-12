@@ -1,4 +1,8 @@
 s_id,stud_name,room_no
+sd,cdsv,vds
+da,fds,fds
+df,fsd,sdggfd
+s_id,stud_name,room_no
 0,NULL,101
 0,NULL,102
 0,NULL,103
@@ -59,3 +63,4 @@ s_id,stud_name,room_no
 0,NULL,318
 0,NULL,319
 0,NULL,320
+da,cdsv,vds
