@@ -22,17 +22,17 @@ class Hostel
         // void program_open();
 
         void header(); // student or Admin
-        
+
         // int idposition(int sid); // for update, delete , search
 
         void store_value(); //*
 
-        
+
 
         void get_stud_info();
         void stud_all_display();//*(done)
         void stud_search();
-        
+
 
         void get_roominfo();
         // void room_add();
@@ -42,7 +42,7 @@ class Hostel
         int check_room(int roomid);
         void available_rooms();
 
-        
+
 
 
         void program_close();//* file close
@@ -62,7 +62,7 @@ class Student: public Hostel
 	file<<line;
 	file.close();
     }
-    
+
     void join(string ID, string name) // 2. if student wants to join then get id, and details, send to db
     {
 	string file_name = "../database/join.csv", line;
@@ -73,7 +73,7 @@ class Student: public Hostel
 	file.close();
     }
 
-    void guest(string ID, string name, string start_date, string end_date, string guest_name, string guest_relation) // 3. application request for guest... room reserved for guest 
+    void guest(string ID, string name, string start_date, string end_date, string guest_name, string guest_relation) // 3. application request for guest... room reserved for guest
     {
 	string file_name = "../database/guest.csv", line;
 	ofstream file(file_name, ios::out);
@@ -102,7 +102,7 @@ void Hostel:: store_value()	//stores all IDs, names and room nos in separate vec
 	string file_name = "db.csv", delimeter = ",";
 
 	ifstream file(file_name);
-	
+
 	vector<string> nm_v, rm_v, id_v;
 
 	string line = "";
@@ -113,7 +113,7 @@ void Hostel:: store_value()	//stores all IDs, names and room nos in separate vec
 	{
 			vector<string> vect;
 			boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
-			
+
 			studentid.push_back(vect[0]);
 			studentname.push_back(vect[1]);
 			rnumber.push_back(vect[2]);
@@ -152,7 +152,7 @@ void Admin::add_student()
     studentname.push_back(name);
     studentid.push_back(id);
     rnumber.push_back(room);
-    
+
     // if(rnumber[i] <= 20) //20 rooms in one floor
     //     rfloor[i] = 1;
     // else if(rnumber[i] > 20 && rnumber[i] <= 40)
@@ -186,7 +186,7 @@ void Admin::stud_del()
     // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
     // cout << ' ' << *it;
     // cout<<endl;
-    
+
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         if(*it == id)
@@ -201,9 +201,9 @@ void Admin::stud_del()
     cout<<endl;
     studentname.erase (studentname.begin() + i);
     rnumber.erase (rnumber.begin() + i);
-    
+
     // cout<<endl;
-    
+
     // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
     //     cout<< *it<<"\t";
     // cout<<endl;
@@ -240,7 +240,7 @@ void Hostel::stud_all_display()
         cout<< studentname[it-studentid.begin()]<< "\t";
         cout<< rnumber[it-studentid.begin()]<< endl;
     }
-    
+
 }
 
 void Admin::stud_clear()
@@ -267,7 +267,7 @@ void vector_2_file()	//stores values from all the three vectors into db1.csv
 
 void file_display()	//displays db1.csv
 {
-		
+
 	string file_name = "../database/db1.csv", delimeter = ",";
 
 	ifstream file(file_name);
@@ -294,6 +294,73 @@ void file_display()	//displays db1.csv
 	file.close();
 
 }
+
+//Some Hostel functions added
+
+//Search a student name and room number by his id
+void Hostel::stud_search()
+{
+    int ser;
+    cout<<"\nEnter the Student Id:\n";
+    cin>>ser;
+    vector<int>::iterator it;
+    it=find(studentid.begin(),studentid.end(),ser);
+    if(it!=studentid.end())
+    {
+        cout<<"\nSTUDENT FOUND:\n";
+        cout<<"\nNAME:"<<studentname[it-studentid.begin()];
+        cout<<"\nROOM NO.:"<<studentroom[it-studentroom.begin()];
+    }
+    else
+        cout<<"Element not found!"<<"\n\n\n";
+}
+
+
+//Search for the student name and id by the room number
+void Hostel::room_search()
+{
+    int roomno;
+    cout<<"\nEnter the room no. to be searched:";
+    cin>>roomno;
+    vector<int>::iterator it;
+    it=find(studentroom.begin(),studentroom.end(),roomno);
+    if(it!=studentroom.end())
+    {
+        if(studentid[it-studentroom.begin()]=='\0')
+          cout<<"\nRoom is vacant!!";
+        else
+          {
+             cout<<"\nStudent Details for Room no."<<*it<<":";
+             cout<<"\nName:"<<studentname[it-studentroom.begin()];
+             cout<<"\nID:"<<studentid[it-studentroom.begin()];
+          }
+    }
+    else
+        cout<<"Room not found!"<<"\n\n";
+}
+
+//Check whether the searched room is vacant
+int Hostel::check_room(int roomid)
+{
+    vector<int>::iterator it;
+    it=find(studentroom.begin(),studentroom.end(),roomid);
+    if(it!=studentroom.end())
+    {
+        if(studentid[it-studentroom.begin()]=='\0')
+          return 0; //Room is vacant
+        else
+          return 1; //Room is occupied already
+    }
+    else
+        return -1;//Invalid room number entered
+}
+
+
+//Check for the number of available/unoccupied rooms not required anymore
+/*void Hostel::available_rooms()
+{
+    //Addition of code after add_student() function
+}*/
 
 
 int main()
