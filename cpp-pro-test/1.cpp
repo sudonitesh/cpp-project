@@ -1,4 +1,3 @@
-// #include "../include/classes.h"
 #include<iostream>
 #include<fstream>
 #include<vector>
@@ -6,6 +5,8 @@
 #include<algorithm>
 #include<iterator>
 #include<boost/algorithm/string.hpp>
+
+#include <typeinfo>
 
 
 using namespace std;
@@ -27,6 +28,9 @@ class Hostel
 
         void store_value(); //*
 
+        void vector_2_file();
+        void file_display();
+
         
 
         void get_stud_info();
@@ -41,6 +45,7 @@ class Hostel
         // int room_position(int n); //get floor
         int check_room(int roomid);
         void available_rooms();
+        void vector_to_array();
 
         
 
@@ -52,10 +57,9 @@ class Student: public Hostel
 {
     public:
     void header(); // functions that student can access
-//////////////////////////////////////////FOR ALL THE BELOW THREE FUNCTIONS, TELL ME IF YOU WANT TO ADD THREE DISPLAY FUNCTIONS FOR EACH////////////////////
     void leave_app(string ID, string name, string room_no, string start_date, string end_date, string reason) // 1. leave application
     {
-	string file_name = "../database/leave.csv", line;
+	string file_name = "leave.csv", line;
 	ofstream file(file_name, ios::out);
 
 	line = ID + "," + name + "," + room_no + "," + start_date + "," + end_date + "," + reason + "\n";
@@ -65,7 +69,7 @@ class Student: public Hostel
     
     void join(string ID, string name) // 2. if student wants to join then get id, and details, send to db
     {
-	string file_name = "../database/join.csv", line;
+	string file_name = "join.csv", line;
 	ofstream file(file_name, ios::out);
 
 	line = ID + "," + name + "\n";
@@ -75,7 +79,7 @@ class Student: public Hostel
 
     void guest(string ID, string name, string start_date, string end_date, string guest_name, string guest_relation) // 3. application request for guest... room reserved for guest 
     {
-	string file_name = "../database/guest.csv", line;
+	string file_name = "guest.csv", line;
 	ofstream file(file_name, ios::out);
 
 	line = ID + "," + name + "," + start_date + "," + end_date + "," + guest_name + "," + guest_relation + "\n";
@@ -91,13 +95,9 @@ class Admin: public Hostel
         void add_student(); //*(done)
         void stud_del(); //*(done)
         void stud_clear(); //remove all students(done)
-
-
-
 };
 
-
-void Hostel:: store_value()	//stores all IDs, names and room nos in separate vectors
+void Hostel:: store_value()
 {
 	string file_name = "db.csv", delimeter = ",";
 
@@ -119,12 +119,6 @@ void Hostel:: store_value()	//stores all IDs, names and room nos in separate vec
 			rnumber.push_back(vect[2]);
 	}
 
-	// file.close();
-
-	// for (int i = 0 ; i < 60 ; i++)	//display all the vectors (delete if you don't want)
-  	// {
-	//    cout <<  studentid[i] << " " << studentname[i] << " " << rnumber[i] << endl;
-  	// }
 }
 
 void Admin::add_student()
@@ -138,42 +132,18 @@ void Admin::add_student()
     string room;
     cout<<"Enter room number: ";
     cin>>room;
-    // if(rnumber.size() > 60)
-    // {
-    //     cout<< "No vacancy."<< endl;
-    // }
-    // else
-    // {
-    // int i = 0;
-    // while(studentname[i] != NULL)
-    // {
-    //     i++;
-    // }
+
     studentname.push_back(name);
     studentid.push_back(id);
     rnumber.push_back(room);
-    
-    // if(rnumber[i] <= 20) //20 rooms in one floor
-    //     rfloor[i] = 1;
-    // else if(rnumber[i] > 20 && rnumber[i] <= 40)
-    //     rfloor[i] = 2;
-    // else
-    //     rfloor[i] = 3;
-    // cout<< "ID: "<< studentid.end()<< endl;
-    // cout<< "Name: "<< studentname.end()<< endl;
-    // cout<<"Room No.: "<< rnumber.end()<< endl;
-    // cout<<"Floor No.: "<< rfloor[i]<< endl;
-    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-    {
-        cout<< *it<< "\t";
-        cout<< studentname[it-studentid.begin()]<< "\t";
-        cout<< rnumber[it-studentid.begin()]<< endl;
-    }
-    // cout<<endl;
-    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+
+    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    // {
     //     cout<< *it<< "\t";
+    //     cout<< studentname[it-studentid.begin()]<< "\t";
+    //     cout<< rnumber[it-studentid.begin()]<< endl;
     // }
-    // display_details(i);
+
 }
 
 void Admin::stud_del()
@@ -183,10 +153,7 @@ void Admin::stud_del()
     cin>>id;
     int i = 0;
     cout<<endl;
-    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    // cout << ' ' << *it;
-    // cout<<endl;
-    
+
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         if(*it == id)
@@ -202,17 +169,6 @@ void Admin::stud_del()
     studentname.erase (studentname.begin() + i);
     rnumber.erase (rnumber.begin() + i);
     
-    // cout<<endl;
-    
-    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    //     cout<< *it<<"\t";
-    // cout<<endl;
-    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-    //     cout<< *it<<"\t";
-    // cout<<endl;
-    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
-    //     cout<< *it<<"\t";
-    // cout<<endl;
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         cout<< *it<< "\t";
@@ -223,17 +179,7 @@ void Admin::stud_del()
 
 void Hostel::stud_all_display()
 {
-    // cout<<endl;
-    // for (vector<string>::iterator it = studentname.begin() ; it != studentname.end(); ++it)
-    //     cout << *it<< "\t";
-    // cout<<endl;
-    // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
-    //     cout<< *it<< "\t";
-    // cout<<endl;
-    // for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
-    //     cout<< *it<< "\t";
-    // //*: either show row-column wise or simply show the database
-    // cout<<endl;
+
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         cout<< *it<< "\t";
@@ -250,25 +196,35 @@ void Admin::stud_clear()
     studentname.clear();
 }
 
-
-void vector_2_file()	//stores values from all the three vectors into db1.csv
+void Hostel::vector_to_array()
 {
-	string file_name = "../database/db1.csv", line;
+    for (vector<string>::iterator it = rnumber.begin() ; it != rnumber.end(); ++it)
+        cout<< *it<< "\t";
+}
+void Hostel::vector_2_file()	//stores values from all the three vectors into db1.csv
+{
+	string file_name = "db.csv", line;
 
 	ofstream file(file_name, ios::out);
 
-	for(int i = 0 ; i < studentname.size() ; i++)
-	{
-		line = studentid[i] + "," + studentname[i] + "," + rnumber[i] + "\n";
-		file<<line;
-	}
+	// for(int i = 0 ; i < studentname.size() ; i++)
+	// {
+	// 	line = studentid[i] + "," + studentname[i] + "," + rnumber[i] + "\n";
+	// 	file<<line;
+	// }
+    
+    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    {
+        line = string(*it) + "," + string(studentname[it-studentid.begin()]) + "," +  string(rnumber[it-studentid.begin()]) + '\n';
+        file<<line;
+    }
 
 }
 
-void file_display()	//displays db1.csv
+void Hostel::file_display()	//displays db1.csv
 {
 		
-	string file_name = "../database/db1.csv", delimeter = ",";
+	string file_name = "db.csv", delimeter = ",";
 
 	ifstream file(file_name);
 	vector<vector<string>> dataList;
@@ -302,36 +258,23 @@ int main()
     Admin A;
     Student S;
     H.store_value();
-    H.header();
-    int i, stud_option, admin_option;
-    cin>>i;
-    if(i==1)
-    {
-        // while input not equal 0 run
-        cout<<"student\n";
-        S.header();
-        /*
-            1. stud_all_display
-        */
-       cin>>stud_option;
-       switch(stud_option)
-        {
-            case 1:
-                S.stud_all_display();
 
-        }
-
-    }
-    if(i==2)
-    {
-        cout<<"admin\n";
-        A.header();
-
-    }
-    // H.store_value();
-    // H.add_student();
-    // H.stud_del();
+    // H.file_display();
     // H.stud_all_display();
+
+    // S.leave_app("33", "nkt", "232", "22-11-22", "32-11-34", "reasonw wofwfc wcowcw");
+    // S.leave_app("33324", "nkt", "232", "22-11-22", "32-11-34", "dsf"); // database overwriting not updating
+
+    // S.join("342", "nsmer");
+    // S.join("342", "nsfdgfdmer"); // database overwriting not updating
+
+    // S.guest("ID", "name","start_date","end_date", "guest_name", "guest_relation");
+
+    // A.stud_clear(); //error: not working
+    A.add_student();
+    A.add_student();
+    // A.stud_all_display();
+    A.vector_2_file();
 
     return 0;
 }
