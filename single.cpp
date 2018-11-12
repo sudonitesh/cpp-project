@@ -3,8 +3,8 @@
 #include<fstream>
 #include<vector>
 #include<string>
-#include<algorithm>
-#include<iterator>
+//#include<algorithm>
+//#include<iterator>
 #include<boost/algorithm/string.hpp>
 
 
@@ -217,7 +217,7 @@ int main()
     Hostel H;
     H.store_value();
     // H.add_student();
-    // H.stud_del();
+    H.stud_del();
     // H.stud_all_display();
     int choice;
     cout<<endl<< "Press the appropriate key: "<<endl;
