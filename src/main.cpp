@@ -84,7 +84,10 @@ int main()
                         H.check_room(); //!error
                         break;
                     case 7: 
-                        H.stud_all_display(); //!error
+                        H.room_search();
+                        break; 
+                    case 8: 
+                        H.stud_all_display();
                         break;
                 }
             }
