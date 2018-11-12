@@ -301,8 +301,8 @@ int main()
     Student S;
     H.store_value();
 
-    // H.file_display();
-    // H.stud_all_display();
+    H.file_display();
+    H.stud_all_display();
 
     // S.leave_app("33", "nkt", "232", "22-11-22", "32-11-34", "reasonw wofwfc wcowcw");
     // S.leave_app("33324", "nkt", "232", "22-11-22", "32-11-34", "dsf"); // database overwriting not updating
@@ -313,8 +313,8 @@ int main()
     // S.guest("ID", "name","start_date","end_date", "guest_name", "guest_relation");
 
     // A.stud_clear(); //error: not working
-    A.add_student();
-    A.add_student();
+    // A.add_student();
+    // A.add_student();
     // A.stud_all_display();
     A.vector_2_file();
 

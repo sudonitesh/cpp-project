@@ -31,7 +31,6 @@ public:
         //7. stud_all_display()
     }
     // int idposition(int sid); // for update, delete , search
-    
     void store_value(); //*
     
     void vector_2_file();
@@ -49,12 +48,13 @@ public:
     void room_search();//(done)
     // void room_remove();
     // int room_position(int n); //get floor
-    int check_room(int roomid);//(done)
+    void check_room();//(done)
     //void available_rooms();
     void vector_to_array();
     
     
     
+    void stud_del(); //*(done)
     
     void program_close();//* file close
 };
@@ -68,7 +68,7 @@ public:
     {
         cout<<"Enter password: ";
         cin>> password;
-        if(password == 1234)
+        if(password == "1234")
         {
         cout<<"Working as student"<<endl;
         cout<<"===================================="<<endl;
@@ -81,7 +81,7 @@ public:
         else
         {
             cout<<"Incorrect password."<<endl;
-            return 0;
+            exit(0);
         }
         
     }
@@ -92,7 +92,7 @@ public:
         cout<<endl;
         cout<<"Name:"; cin>> name;
         cout<<endl;
-        cout<< "Room no.:" cin>> room_no;
+        cout<< "Room no.:"; cin>> room_no;
         cout<<endl;
 
         cout<< "Start date"; cin>> start_date;
@@ -105,10 +105,8 @@ public:
         cout<<endl;
 
         string file_name = "leave.csv", line;
-        cout<<endl;
-
         ofstream file(file_name, ios::out);
-        
+
         line = ID + "," + name + "," + room_no + "," + start_date + "," + end_date + "," + reason + "\n";
         file<<line;
         file.close();
@@ -123,12 +121,9 @@ public:
         cout<<endl;
         
         
-        string file_name = "leave.csv", line;
-        cout<<endl;
-
         string file_name = "join.csv", line;
         ofstream file(file_name, ios::out);
-        
+
         line = ID + "," + name + "\n";
         file<<line;
         file.close();
@@ -154,13 +149,10 @@ public:
         cout<< "Relation:"; cin>> g_relation;
         cout<<endl;
         
-        string file_name = "leave.csv", line;
-        cout<<endl;
-
         string file_name = "guest.csv", line;
         ofstream file(file_name, ios::out);
-        
-        line = ID + "," + name + "," + start_date + "," + end_date + "," + guest_name + "," + guest_relation + "\n";
+
+        line = ID + "," + name + "," + start_date + "," + end_date + "," + g_name + "," + g_relation + "\n";
         file<<line;
         file.close();
     }
@@ -172,11 +164,11 @@ private:
     string password;
 
 public:
-    void header(); // functions admin can acess
+    void header() // functions admin can acess
     {
         cout<<"Enter password: ";
         cin>> password;
-        if(password == abcd)
+        if(password == "abcd")
         {
         cout<<"Working as Admin"<<endl;
         cout<<"===================================="<<endl;
@@ -185,7 +177,7 @@ public:
         else
         {
             cout<<"Incorrect password."<<endl;
-            return 0;
+            exit(0);
         }
     }
     //1. add_student()
@@ -193,32 +185,31 @@ public:
         //stud_clear();
             
     void add_student(); //*(done)
-    void stud_del(); //*(done)
     void stud_clear(); //remove all students(done)
 };
 
 void Hostel:: store_value()
 {
-    string file_name = "db.csv", delimeter = ",";
-    
-    ifstream file(file_name);
-    
-    vector<string> nm_v, rm_v, id_v;
-    
-    string line = "";
-    
-    getline(file, line);
-    
-    while(getline(file, line))
-    {
-        vector<string> vect;
-        boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
-        
-        studentid.push_back(vect[0]);
-        studentname.push_back(vect[1]);
-        rnumber.push_back(vect[2]);
-    }
-    
+	string file_name = "db.csv", delimeter = ",";
+
+	ifstream file(file_name);
+	
+	vector<string> nm_v, rm_v, id_v;
+
+	string line = "";
+
+	getline(file, line);
+
+	while(getline(file, line))
+	{
+			vector<string> vect;
+			boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
+			
+			studentid.push_back(vect[0]);
+			studentname.push_back(vect[1]);
+			rnumber.push_back(vect[2]);
+	}
+
 }
 
 void Admin::add_student()
@@ -236,6 +227,8 @@ void Admin::add_student()
     studentname.push_back(name);
     studentid.push_back(id);
     rnumber.push_back(room);
+
+    vector_2_file();
     
     // for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     // {
@@ -246,16 +239,16 @@ void Admin::add_student()
     
 }
 
-void Admin::stud_del()
+void Hostel::stud_del() //error:
 {
     cout<<endl<<"Enter ID of leaving student:";
     string id;
     cin>>id;
     int i = 0;
-    cout<<endl;
     
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
+        cout<<*it<<" ";
         if(*it == id)
         {
             cout<<"Removing "<<*it<<endl;
@@ -266,8 +259,9 @@ void Admin::stud_del()
         i++;
     }
     cout<<endl;
-    studentname.erase (studentname.begin() + i);
-    rnumber.erase (rnumber.begin() + i);
+    // studentname.erase (studentname.begin() + i);
+    // rnumber.erase (rnumber.begin() + i);
+    // vector_2_file();d
     
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
@@ -275,14 +269,15 @@ void Admin::stud_del()
         cout<< studentname[it-studentid.begin()]<< "\t\t";
         cout<< rnumber[it-studentid.begin()]<< endl;
     }
+    vector_2_file();
 }
 
 void Hostel::stud_all_display()
 {
     for(vector<string>::iterator it = studentid.begin(); it != studentid.end(); ++it)
     {
-        cout<< *it<< "\t\t";
-        cout<< studentname[it - studentid.begin()]<< "\t\t";
+        cout<< *it<< "\t";
+        cout<< studentname[it - studentid.begin()]<< "\t";
         cout<< rnumber[it - studentid.begin()]<< endl;
     }
 }
@@ -294,6 +289,7 @@ void Admin::stud_clear()
     rnumber.clear();
     studentid.clear();
     studentname.clear();
+    vector_2_file();
 }
 
 void Hostel::vector_to_array()
@@ -352,14 +348,14 @@ void Hostel::file_display()    //displays db1.csv
 }
  void Hostel::room_search()
  {
-     int roomno;
+     string roomno;
      cout<<"\nEnter the room no. to be searched:";
      cin>>roomno;
-     vector<int>::iterator it;
+     vector<string>::iterator it;
      it=find(rnumber.begin(),rnumber.end(),roomno);
      if(it!=rnumber.end())
      {
-         if(studentid[it-rnumber.begin()]=='\0')
+         if(studentid[it-rnumber.begin()] == "")
            cout<<"\nRoom is vacant!!";
          else
            {
@@ -371,19 +367,34 @@ void Hostel::file_display()    //displays db1.csv
      else
          cout<<"Room not found!"<<"\n\n";
  }
- int Hostel::check_room(int roomid)
+ void Hostel::check_room()
  {
-     vector<int>::iterator it;
-     it=find(rnumber.begin(),rnumber.end(),roomid);
-     if(it!=rnumber.end())
-     {
-         if(studentid[it-rnumber.begin()]=='\0')
-           return 0; //Room is vacant
-         else
-           return 1; //Room is occupied already
-     }
-     else
-         return -1;//Invalid room number entered
+     string roomid;
+     cin>>roomid;
+     std::vector<string>::iterator it;
+     it = find (rnumber.begin(), rnumber.end(), roomid);
+    if (it != rnumber.end())
+        std::cout << "Element found in myvector: " << *it << '\n';
+    else
+        std::cout << "Element not found in myvector\n";
+    // for(vector<string>::iterator it = rnumber.begin(); it != rnumber.end(); ++it)
+    // {
+    //     if(*it == roomid)
+    //     {
+    //         cout<<"not vacant";
+    //         break;
+    //     }
+    //     else {
+    //         cout<<"ok vacant\n";
+    //     }
+    
+    // }
+    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    {
+        cout<< *it<< "\t";
+        cout<< studentname[it-studentid.begin()]<< "\t";
+        cout<< rnumber[it-studentid.begin()]<< endl;
+    }
  }
 
 // void Hostel::get_stud_info()
@@ -391,42 +402,46 @@ void Hostel::file_display()    //displays db1.csv
 //     string name;
 //     cout<<"Enter student's name:";
 //     cin>>name;
-//
+
 // }
-        //search by id
-        void Hostel::stud_search()
+// search by id
+void Hostel::stud_search()
+{
+    string ser;
+    cout<<"\nEnter the Student Id:\n";
+    cin>>ser;
+    
+    for(vector<string>::iterator it = studentid.begin(); it != studentid.end(); ++it)
+    {
+        if(*it == ser)
         {
-            int ser;
-            cout<<"\nEnter the Student Id:\n";
-            cin>>ser;
-            vector<int>::iterator it;
-            it=find(studentid.begin(),studentid.end(),ser);
-            if(it!=studentid.end())
-            {
-                cout<<"\nSTUDENT FOUND:\n";
-                cout<<"\nNAME:"<<studentname[it-studentid.begin()];
-                cout<<"\nROOM NO.:"<<rnumber[it-studentroom.begin()];
-            }
-            else
-                cout<<"Element not found!"<<"\n\n\n";
+            cout<<"present";
+            break;
         }
-        //search by name
-        void Hostel::name_search()
-        {
-            string name;
-            cout<<"\nEnter the name of the student:\n";
-            cin>>name;
-            vector<int>::iterator it;
-            it=find(studentname.begin(),studentname.end(),name);
-            if(it!=studentname.end())
-            {
-                cout<<"\nSTUDENT FOUND:\n";
-                cout<<"\nNAME:"<<studentid[it-studentname.begin()];
-                cout<<"\nROOM NO.:"<<rnumber[it-studentname.begin()];
-            }
-            else
-                cout<<"Element not found!"<<"\n\n\n";
+        else {
+            cout<<"not present\n";
         }
+    
+    }
+   
+}
+// search by name
+void Hostel::name_search()
+{
+    string name;
+    cout<<"\nEnter the name of the student:\n";
+    cin>>name;
+    vector<string>::iterator it;
+    it=find(studentname.begin(),studentname.end(),name);
+    if(it!=studentname.end())
+    {
+        cout<<"\nSTUDENT FOUND:\n";
+        cout<<"\nNAME:"<<studentid[it-studentname.begin()];
+        cout<<"\nROOM NO.:"<<rnumber[it-studentname.begin()];
+    }
+    else
+        cout<<"Element not found!"<<"\n\n\n";
+}
         
 
 int main()
@@ -435,6 +450,7 @@ int main()
     Admin A;
     Student S;
     H.store_value();
+    H.stud_all_display();
     
     // H.file_display();
     // H.stud_all_display();
@@ -455,6 +471,7 @@ int main()
     cout<<"\nPress the appropriate key:"<<endl;
     cout<<"\n1. Admin\n2. Student\n0. Exit\n";
     int admin_choice, stud_choice, choice;
+    cin>>choice;
     if(choice == 1)
     {
         
@@ -463,9 +480,11 @@ int main()
         cin>> admin_choice;
         switch(admin_choice)
         {
-            case 1. A.add_student();
+            case 1: 
+                A.add_student();
+                A.add_student();
                 break;
-            case 2: A.stud_del();
+            case 2: H.stud_del();
                 break;
             case 3: A.stud_clear();
                 break;
@@ -475,7 +494,8 @@ int main()
                 break;
             case 6: H.check_room();
                 break;
-            case 7: H.stud_all_display();
+            case 7: 
+                H.stud_all_display();
                 break;
         }
     }
@@ -485,7 +505,7 @@ int main()
         cin>> stud_choice;
         switch(stud_choice)
         {
-            case 1. S.leave_app();
+            case 1: S.leave_app();
                 break;
             case 2: S.join();
                 break;
@@ -497,7 +517,8 @@ int main()
                 break;
             case 6: H.check_room();
                 break;
-            case 7: H.stud_all_display();
+            case 7: 
+                H.stud_all_display();
                 break;
         }
     }
