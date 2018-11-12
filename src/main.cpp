@@ -16,7 +16,6 @@ int main()
     Admin A;
     Student S;
     H.store_value();
-    H.stud_all_display();
     cout<<"\nPress the appropriate key:"<<endl;
     cout<<"\n1. Admin\n2. Student\n0. Exit\n";
     int admin_choice=1, stud_choice, choice;

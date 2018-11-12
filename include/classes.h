@@ -13,7 +13,7 @@ class Hostel
         
         
         void header();
-        void store_value(); //*
+        void store_value();
         
         void vector_2_file();
         void file_display();
@@ -38,7 +38,7 @@ class Hostel
 class Student: public Hostel
 {
     private:
-        string password;
+        std::string password;
     public:
         void header();
         void leave_app();
@@ -51,7 +51,7 @@ class Student: public Hostel
 class Admin: public Hostel
 {
 private:
-    string password;
+    std::string password;
 
 public:
     void header();
