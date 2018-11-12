@@ -38,7 +38,7 @@ class Hostel
         void stud_search();
         
 
-        void get_roominfo();
+        //void get_roominfo();
         // void room_add();
         void room_search();
         // void room_remove();
@@ -179,15 +179,15 @@ void Admin::stud_del()
 
 void Hostel::stud_all_display()
 {
-
-    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+    for(vector<string>::iterator it = studentid.begin(); it != studentid.end(); ++it)
     {
         cout<< *it<< "\t";
-        cout<< studentname[it-studentid.begin()]<< "\t";
-        cout<< rnumber[it-studentid.begin()]<< endl;
+        cout<< studentname[it - studentid.begin()]<< "\t";
+        cout<< rnumber[it - studentid.begin()]<< endl;
     }
-    
 }
+    
+
 
 void Admin::stud_clear()
 {
@@ -227,7 +227,7 @@ void Hostel::file_display()	//displays db1.csv
 	string file_name = "db.csv", delimeter = ",";
 
 	ifstream file(file_name);
-	vector<vector<string>> dataList;
+	vector<vector<string> > dataList;
 	string line = "";
 
 	while(getline(file, line))
@@ -250,7 +250,49 @@ void Hostel::file_display()	//displays db1.csv
 	file.close();
 
 }
+// void Hostel::room_search()
+// {
+//     int roomno;
+//     cout<<"\nEnter the room no. to be searched:";
+//     cin>>roomno;
+//     vector<int>::iterator it;
+//     it=find(studentroom.begin(),studentroom.end(),roomno);
+//     if(it!=studentroom.end())
+//     {
+//         if(studentid[it-studentroom.begin()]=='\0')
+//           cout<<"\nRoom is vacant!!";
+//         else
+//           {
+//              cout<<"\nStudent Details for Room no."<<*it<<":";
+//              cout<<"\nName:"<<studentname[it-studentroom.begin()];
+//              cout<<"\nID:"<<studentid[it-studentroom.begin()];
+//           }
+//     }
+//     else
+//         cout<<"Room not found!"<<"\n\n";
+// }
+// int Hostel::check_room(int roomid)
+// {
+//     vector<int>::iterator it;
+//     it=find(studentroom.begin(),studentroom.end(),roomid);
+//     if(it!=studentroom.end())
+//     {
+//         if(studentid[it-studentroom.begin()]=='\0')
+//           return 0; //Room is vacant
+//         else
+//           return 1; //Room is occupied already
+//     }
+//     else
+//         return -1;//Invalid room number entered
+// }
 
+// void Hostel::get_stud_info()
+// {
+//     string name;
+//     cout<<"Enter student's name:";
+//     cin>>name;
+
+// }
 
 int main()
 {
