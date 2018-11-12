@@ -165,41 +165,97 @@ void Admin::add_student()
     
 }
 
-void Hostel::stud_del()
+vvoid Hostel::stud_del() 
 {
-    cout<<endl<<"Enter ID of leaving student:";
+    /*cout<<endl<<"Enter ID of leaving student:";
     string id;
     cin>>id;
     int i = 0;
     
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
-        cout<<*it<<" ";
+        //cout<<*it<<" ";
         if(*it == id)
         {
             cout<<"Removing "<<*it<<endl;
+            // break;
             studentid.erase (studentid.begin() + i);
             break;
         }
         i++;
     }
+    cout<<endl;*/
+    // studentname.erase (studentname.begin() + i);
+    // rnumber.erase (rnumber.begin() + i);
+    //vector_2_file();
+
+    ifstream file1;
+    file1.open("db.csv");
+    
+    ofstream file2;
+    file2.open("temp.csv");
+    
+    string id, nm, rm_no, deleteline, line;
+    cout << "Enter ID of leaving student:";
+    cin>>id;
+    cout<<"Enter name of the student:";
+    cin>>nm;
+    cout<<"Enter room no:";
+    cin>>rm_no;
+
+    deleteline = id + "," + nm + "," + rm_no;
+
+    while (!file1.eof())
+    {
+        getline(file1, line);
+
+        if(line.compare(deleteline) != 0)
+        {
+            file2 << line << endl;
+        }
+    }
+    //file2.close();
+    //file1.close();
+    
+    remove("db.csv");
+    rename("temp.csv","db.csv");
     cout<<endl;
-    for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
+
+    /*for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
         cout<< *it<< "\t\t";
         cout<< studentname[it-studentid.begin()]<< "\t\t";
         cout<< rnumber[it-studentid.begin()]<< endl;
     }
-    vector_2_file();
+    vector_2_file();*/
+
+    stud_all_display();
+
 }
 
 void Hostel::stud_all_display()
 {
-    for(vector<string>::iterator it = studentid.begin(); it != studentid.end(); ++it)
+    string file_name = "db.csv", delimeter = ",";
+
+    ifstream file(file_name);
+    vector<vector<string>> dataList;
+    string line = "";
+
+    while(getline(file, line))
     {
-        cout<< *it<< "\t";
-        cout<< studentname[it - studentid.begin()]<< "\t";
-        cout<< rnumber[it - studentid.begin()]<< endl;
+        vector<string> vect;
+        boost::algorithm::split(vect, line, boost::is_any_of(delimeter));
+        dataList.push_back(vect);
+    }
+
+    for(vector<string> vect : dataList)
+    {
+        for(string data : vect)
+        {
+            cout<<data<<" ";
+        }
+
+        cout<<endl;
     }
 }
 
@@ -222,7 +278,7 @@ void Hostel::vector_2_file()
 {
     string file_name = "../database/db.csv", line;
     
-    ofstream file(file_name, ios::out|ios::app);
+    ofstream file(file_name, ios::out);
 
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
