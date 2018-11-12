@@ -12,7 +12,7 @@ using namespace std;
 
 void Hostel:: header() 
 {
-    cout<<"4. Search by student name\n 5. Search by ID\n6. Check room availability\n7. Search by room\n8. Display all entries\n";
+    cout<<"4. Search by student name\n5. Search by ID\n6. Check room availability\n7. Search by room\n8. Display all entries\n";
 }
 
 void Student:: guest()
@@ -95,7 +95,7 @@ void Student::header()
     {
     cout<<"Working as student"<<endl;
     cout<<"===================================="<<endl;
-    cout<<"\n1. Request to leave hostel\n 2. Request to join hostel\n3. Request to keep guests\n";
+    cout<<"\n1. Request to leave hostel\n2. Request to join hostel\n3. Request to keep guests\n";
     }
     
     else
