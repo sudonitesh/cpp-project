@@ -165,7 +165,7 @@ void Admin::add_student()
     
 }
 
-void Hostel::stud_del() 
+void Hostel::stud_del()
 {
     /*cout<<endl<<"Enter ID of leaving student:";
     string id;
@@ -190,10 +190,10 @@ void Hostel::stud_del()
     //vector_2_file();
 
     ifstream file1;
-    file1.open("db.csv");
+    file1.open("../database/db.csv");
     
     ofstream file2;
-    file2.open("temp.csv");
+    file2.open("../database/temp.csv");
     
     string id, nm, rm_no, deleteline, line;
     cout << "Enter ID of leaving student:";
@@ -217,8 +217,8 @@ void Hostel::stud_del()
     //file2.close();
     //file1.close();
     
-    remove("db.csv");
-    rename("temp.csv","db.csv");
+    remove("../database/db.csv");
+    rename("../database/temp.csv","../database/db.csv");
     cout<<endl;
 
     /*for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
@@ -235,7 +235,7 @@ void Hostel::stud_del()
 
 void Hostel::stud_all_display()
 {
-    string file_name = "db.csv", delimeter = ",";
+    string file_name = "../database/db.csv", delimeter = ",";
 
     ifstream file(file_name);
     vector<vector<string>> dataList;
@@ -278,7 +278,7 @@ void Hostel::vector_2_file()
 {
     string file_name = "../database/db.csv", line;
     
-    ofstream file(file_name, ios::out);
+    ofstream file(file_name, ios::out|ios::app);
 
     for (vector<string>::iterator it = studentid.begin() ; it != studentid.end(); ++it)
     {
