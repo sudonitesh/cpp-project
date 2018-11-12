@@ -3,8 +3,8 @@
 #include<fstream>
 #include<vector>
 #include<string>
-#include<algorithm>
-#include<iterator>
+//#include<algorithm>
+//#include<iterator>
 #include<boost/algorithm/string.hpp>
 
 
