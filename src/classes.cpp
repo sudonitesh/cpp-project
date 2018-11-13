@@ -96,7 +96,7 @@ void Student::header()
     cin>> password;
     if(password == "1234")
     {
-        system("CLS");
+        //system("CLS");
         cout<<"\n\t\t\t====================================";
         cout<<"\n\t\t\t         LOGGED in as : Student"<<endl;
         cout<<"\t\t\t===================================="<<endl;
@@ -118,7 +118,7 @@ void Admin::header()
     cin>> password;
     if(password == "abcd")
     {
-        system("CLS");
+        //system("CLS");
         cout<<"\n\t\t\t====================================";
         cout<<"\n\t\t\t         LOGGED in as : Admin "<<endl;
         cout<<"\t\t\t===================================="<<endl;
@@ -156,7 +156,7 @@ void Hostel:: store_value()
 
 void Admin::add_student()
 {
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t====================================";
     cout<<"\n\t\t\t       Enter the following Details:"<<endl;
     cout<<"\t\t\t===================================="<<endl;
@@ -212,7 +212,7 @@ void Hostel::stud_del()
     file2.open("../database/temp.csv");
 
     string id, nm, rm_no, deleteline, line;
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t====================================";
     cout<<"\n\t\t\t       Enter the following Details:"<<endl;
     cout<<"\t\t\t===================================="<<endl;
@@ -255,7 +255,7 @@ void Hostel::stud_del()
 
 void Hostel::stud_all_display()
 {
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t   ====================================";
     cout<<"\n\t\t\t            Complete details:"<<endl;
     cout<<"\t\t\t   ===================================="<<endl;
@@ -290,7 +290,7 @@ void Admin::stud_clear()
     rnumber.clear();
     studentid.clear();
     studentname.clear();
-    system("CLS");
+    //system("CLS");
     cout<<"\n\n\n\n\n\t\t\t------------------STUDENT DETAILS DELETED SUCCESSFULY!!---------------------";
     vector_2_file();
 }
@@ -345,7 +345,7 @@ void Hostel::file_display()
 }
  void Hostel::room_search()
  {
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t   ====================================";
     cout<<"\n\t\t\t            Enter the details:"<<endl;
     cout<<"\t\t\t   ===================================="<<endl;
@@ -370,7 +370,7 @@ void Hostel::file_display()
  }
  void Hostel::check_room()
  {
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t   ====================================";
     cout<<"\n\t\t\t            Enter the details:"<<endl;
     cout<<"\t\t\t   ===================================="<<endl;
@@ -394,7 +394,7 @@ void Hostel::file_display()
 void Hostel::stud_search()
 {
      string ID;
-     system("CLS");
+     //system("CLS");
      cout<<"\n\t\t\t   ====================================";
      cout<<"\n\t\t\t            Enter the details:"<<endl;
      cout<<"\t\t\t   ===================================="<<endl;
@@ -418,7 +418,7 @@ void Hostel::stud_search()
 void Hostel::name_search()
 {
     string name;
-    system("CLS");
+    //system("CLS");
     cout<<"\n\t\t\t   ====================================";
     cout<<"\n\t\t\t            Enter the details:"<<endl;
     cout<<"\t\t\t   ===================================="<<endl;
